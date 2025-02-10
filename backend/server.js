@@ -1,28 +1,23 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-require('dotenv').config();  // For environment variables
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import Data from './models/Data.js';
+
+dotenv.config();  // For environment variables
+
 const app = express();
-const port = 5001;
+const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
-
-// Define schema
-const DataSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  city: String
-});
-
-const Data = mongoose.model('Data', DataSchema);
 
 // POST route to handle form submission
 app.post('/api/submit', async (req, res) => {
@@ -87,3 +82,4 @@ app.put('/api/data/:id', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+export default app;

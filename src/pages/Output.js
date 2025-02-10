@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/formstyles.css';
+import backendUrl from '../utils/config.js';
 
 function Output() {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ function Output() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/data');
+        const response = await fetch(`${backendUrl}/api/data`);
         if (response.ok) {
           const result = await response.json();
           setData(result);
@@ -39,7 +40,7 @@ function Output() {
     try {
       const rowData = data[rowToDelete];
       console.log('Deleting ID:', rowData._id); // Log the ID being sent
-      const response = await fetch(`http://localhost:5001/api/data/${rowData._id}`, {
+      const response = await fetch(`${backendUrl}/api/data/${rowData._id}`, {
         method: 'DELETE',
       });
   
@@ -80,7 +81,7 @@ function Output() {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5001/api/data/${editData._id}`, {
+      const response = await fetch(`${backendUrl}/api/data/${editData._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

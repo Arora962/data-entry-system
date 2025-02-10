@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/formstyles.css'; // Import the updated CSS file
+import backendUrl from '../utils/config.js';
 
 function Home() {
   const [name, setName] = useState('');
@@ -14,7 +15,7 @@ function Home() {
     const data = { name, email, city };
 
     try {
-      const response = await fetch('http://localhost:5001/api/submit', {
+      const response = await fetch(`${backendUrl}/api/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
