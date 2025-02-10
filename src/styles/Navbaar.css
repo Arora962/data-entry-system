@@ -1,0 +1,29 @@
+/* Navbar Styling */
+.navbar {
+  background-color: #007bff;
+  padding: 15px 30px; /* Increased padding for larger navbar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-size: 20px; /* Larger font size */
+  margin: 0 25px; /* More space between the buttons */
+  padding: 12px 25px; /* Larger padding for a more prominent button */
+  border-radius: 6px; /* Slightly rounded corners */
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+/* Hover effect for navbar links */
+.navLink:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
